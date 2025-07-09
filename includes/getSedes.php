@@ -6,3 +6,4 @@ $sedes = $db->query("SELECT idSede, nombreSede FROM dbo.Sedes ORDER BY nombreSed
 
 header('Content-Type: application/json');
 echo json_encode($sedes);
+?>

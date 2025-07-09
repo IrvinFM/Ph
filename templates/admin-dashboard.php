@@ -85,7 +85,7 @@ $nombre = $_SESSION['user']['name'] ?? 'Admin';
                         <i class="fas fa-bell"></i>
                     </button>
                     <div class="flex items-center">
-                        <img src="https://via.placeholder.com/40" alt="User" class="h-8 w-8 rounded-full">
+                        
                         <span class="ml-2 text-sm font-medium text-gray-700">
                         <?php echo htmlspecialchars($nombre); ?>
                         </span>
@@ -113,7 +113,6 @@ $nombre = $_SESSION['user']['name'] ?? 'Admin';
     <script src="../Js/sedes/cargarSedes.js"></script>
     <script src="../Js/sedes/nuevasede.js"></script>
 
-    <script src="../Js/alumnos/alumnoHandlers.js"></script>
     <script src="../Js/alumnos/cargarAlumnos.js"></script>
     <script src="../Js/alumnos/editAlumno.js"></script>
     <script src="../Js/alumnos/nuevoalumno.js"></script>

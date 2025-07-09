@@ -45,7 +45,7 @@ try {
             }
 
             $stmt = $pdo->prepare("DELETE FROM dbo.Sedes WHERE idSede = ?");
-            $stmt->execute([$id]); // <-- este faltaba
+            $stmt->execute([$id]); 
 
             echo json_encode(['message' => 'Sede eliminada correctamente']);
             break;
@@ -83,3 +83,4 @@ try {
     http_response_code(500);
     echo json_encode(['message' => 'Error de base de datos: ' . $e->getMessage()]);
 }
+?>

@@ -24,7 +24,7 @@ if ($method === 'POST') {
 
     $stmt = $db->prepare("INSERT INTO dbo.Usuarios 
         (tipoUsuario, idSede, nombreUsuario, apePaterno, apeMaterno, email, password, imgUrlUsuario, createdAt, updatedAt)
-        VALUES ('alumno', :idSede, :nombre, :apePaterno, :apeMaterno, :email, :password, :img, GETDATE(), GETDATE())");
+        VALUES ('ALUMNO', :idSede, :nombre, :apePaterno, :apeMaterno, :email, :password, :img, GETDATE(), GETDATE())");
 
     $success = $stmt->execute([
         ':idSede' => $idSede,
@@ -33,7 +33,7 @@ if ($method === 'POST') {
         ':apeMaterno' => $apeMaterno,
         ':email' => $email,
         ':password' => $hashedPassword,
-        ':img' => 'https://via.placeholder.com/150'
+        ':img' => ''
     ]);
 
     echo json_encode(['message' => $success ? 'Alumno creado correctamente' : 'Error al crear alumno']);
