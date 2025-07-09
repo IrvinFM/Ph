@@ -66,7 +66,6 @@ if (isConfirmed && formValues) {
         });
 
         const responseText = await res.text();
-       // console.log('Respuesta del servidor:', responseText);
 
         let result;
         try {
@@ -95,7 +94,7 @@ if (isConfirmed && formValues) {
             confirmButtonText: 'OK'
         });
 
-        cargarSedes(); // Actualizar tabla con datos nuevos
+        cargarSedes(); 
 
     } catch (error) {
         Swal.fire({

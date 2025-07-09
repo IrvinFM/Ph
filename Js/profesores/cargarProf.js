@@ -1,5 +1,5 @@
-function inicializarTablaAlumnos() {
-    const tabla = document.getElementById("tablaAlumnos");
+function inicializarTablaProfesor() {
+    const tabla = document.getElementById("tablaProf");
     if (tabla) {
         if ($.fn.DataTable.isDataTable(tabla)) {
             $(tabla).DataTable().destroy();
@@ -20,22 +20,22 @@ function inicializarTablaAlumnos() {
     }
 }
 
-async function recargarAlumnos() {
+async function recargarProfesor() {
     const mainContent = document.getElementById("main-content");
 
     try {
-        const response = await fetch('../includes/alumnos-content.php');
-        if (!response.ok) throw new Error('Error al cargar alumnos');
+        const response = await fetch('../includes/profesor-content.php');
+        if (!response.ok) throw new Error('Error al cargar Profesores');
         const html = await response.text();
 
         mainContent.innerHTML = html;
-        inicializarTablaAlumnos(); 
+        inicializarTablaProfesor(); 
     } catch (error) {
         console.error('Error:', error);
         mainContent.innerHTML = `
             <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">
-                Error al cargar la tabla de alumnos.
-                <button onclick="recargarAlumnos()" class="font-medium text-red-600 hover:underline">Reintentar</button>
+                Error al cargar la tabla de Profesores.
+                <button onclick="recargarProfesor()" class="font-medium text-red-600 hover:underline">Reintentar</button>
             </div>
         `;
     }

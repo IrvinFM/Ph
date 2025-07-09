@@ -1,5 +1,5 @@
 document.addEventListener("click", async (e) => {
-  if (e.target && e.target.id === "btnNuevoAlumno") {
+  if (e.target && e.target.id === "btnNuevoProf") {
 
     const sedes = await fetch("../includes/getSedes.php")
       .then(res => res.json())
@@ -10,7 +10,7 @@ document.addEventListener("click", async (e) => {
 
    
     const { value: formValues, isConfirmed } = await Swal.fire({
-      title: "Agregar Alumno",
+      title: "Agregar Profesor",
       html: `
         <input id="swal-nombre"    class="swal2-input" placeholder="Nombre">
         <input id="swal-paterno"   class="swal2-input" placeholder="Apellido Paterno">
@@ -51,7 +51,7 @@ document.addEventListener("click", async (e) => {
 
     if (isConfirmed && formValues) {
       try {
-        const res = await fetch("../includes/alumnosController.php", {
+        const res = await fetch("../includes/profesorController.php", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: new URLSearchParams(formValues)
@@ -59,9 +59,9 @@ document.addEventListener("click", async (e) => {
         const result = await res.json();
         if (res.ok) {
           Swal.fire("¡Agregado!", result.message, "success");
-          recargarAlumnos();
+          recargarProfesor();
         } else {
-          throw new Error(result.message || "Error al crear alumno");
+          throw new Error(result.message || "Error al crear Profesor");
         }
       } catch (err) {
         Swal.fire("Error", err.message, "error");

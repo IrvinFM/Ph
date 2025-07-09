@@ -1,6 +1,6 @@
 document.addEventListener('click', async (e) => {
     // EDITAR
-    const btnEdit = e.target.closest('.edit-alumno-btn');
+    const btnEdit = e.target.closest('.edit-prof-btn');
     if (btnEdit) {
         const id = btnEdit.dataset.id;
         const nombre = btnEdit.dataset.nombre;
@@ -18,7 +18,7 @@ document.addEventListener('click', async (e) => {
         ).join('');
 
         const { value: formValues, isConfirmed } = await Swal.fire({
-            title: 'Editar Alumno',
+            title: 'Editar Profesor',
             html: `
                 <input id="nombre" class="swal2-input" placeholder="Nombre" value="${nombre}">
                 <input id="paterno" class="swal2-input" placeholder="Apellido Paterno" value="${paterno}">
@@ -45,7 +45,7 @@ document.addEventListener('click', async (e) => {
 
         if (isConfirmed && formValues) {
             try {
-                const res = await fetch('../includes/alumnosController.php', {
+                const res = await fetch('../includes/profesorController.php', {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams(formValues)
@@ -54,7 +54,7 @@ document.addEventListener('click', async (e) => {
                 const data = await res.json();
                 if (res.ok) {
                     Swal.fire('¡Actualizado!', data.message, 'success');
-                    recargarAlumnos(); // Vuelve a cargar alumnos con todo
+                    recargarProfesor();
                 } else {
                     throw new Error(data.message || 'Error al actualizar');
                 }
@@ -65,12 +65,12 @@ document.addEventListener('click', async (e) => {
     }
 
     // ELIMINAR
-    const btnDelete = e.target.closest('.delete-alumno-btn');
+    const btnDelete = e.target.closest('.delete-prof-btn');
     if (btnDelete) {
         const id = btnDelete.dataset.id;
 
         const confirmDelete = await Swal.fire({
-            title: '¿Eliminar Alumno?',
+            title: '¿Eliminar Profesor?',
             text: 'Esta acción no se puede deshacer.',
             icon: 'warning',
             showCancelButton: true,
@@ -80,7 +80,7 @@ document.addEventListener('click', async (e) => {
 
         if (confirmDelete.isConfirmed) {
             try {
-                const res = await fetch('../includes/alumnosController.php', {
+                const res = await fetch('../includes/profesorController.php', {
                     method: 'DELETE',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams({ idUsuario: id })
@@ -89,7 +89,7 @@ document.addEventListener('click', async (e) => {
                 const data = await res.json();
                 if (res.ok) {
                     Swal.fire('¡Eliminado!', data.message, 'success');
-                    recargarAlumnos(); // Recarga tabla actualizada
+                    recargarProfesor(); // Recarga tabla actualizada
                 } else {
                     throw new Error(data.message || 'Error al eliminar');
                 }
